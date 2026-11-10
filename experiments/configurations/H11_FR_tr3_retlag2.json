@@ -1,0 +1,35 @@
+{
+ "id": "H11_FR_tr3_retlag2",
+ "hypothesis": "Second lag of returns",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "retlag2",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

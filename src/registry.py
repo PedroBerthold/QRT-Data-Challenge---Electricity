@@ -72,6 +72,21 @@ EXPERIMENTS = [
     E("G05_DE_nbr2_gauss", "Normal-score target", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), "gauss", nbr={"lags": 2})),
     E("G06_DE_nbr5_rank", "Five days each side", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 5})),
     E("G07_FR_nbr2", "Same idea for FR (residual autocorrelation is weak there: -0.01 to -0.10)", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000), nbr={"lags": 2}), S(["ret", "d1"], R(30), nbr={"lags": 2})),
+    # ---- H. France: multi-day trend of fundamentals (DE fixed to ret+d1 ridge + neighbour stage) ----
+    E("H01_FR_tr3", "FR target follows the multi-day trend of fundamentals: mean of next 3 days minus mean of previous 3", S(["level", "retlag1", "tr3"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H02_FR_tr5", "5-day windows", S(["level", "retlag1", "tr5"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H03_FR_tr3_tr7", "Two horizons", S(["level", "retlag1", "tr3", "tr7"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H04_FR_tr3_d1", "Trend + one-day change", S(["level", "retlag1", "tr3", "d1"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H05_FR_tr3_nolevel", "Trend without levels", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H06_FR_tr3_a300", "Less shrinkage", S(["level", "retlag1", "tr3"], R(300)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H07_FR_tr3_a3000", "More shrinkage", S(["level", "retlag1", "tr3"], R(3000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H08_FR_trc4", "Forward window starting today", S(["level", "retlag1", "trc4"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H09_FR_tr3_trc4", "Both window definitions", S(["level", "retlag1", "tr3", "trc4"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H10_FR_tr3_lgbm", "Boosting on trend features", S(["level", "retlag1", "tr3"], {"type": "lgbm", "params": {"n_estimators": 300, "learning_rate": 0.02, "num_leaves": 5, "min_child_samples": 30, "subsample": 0.7, "subsample_freq": 1, "colsample_bytree": 0.4, "reg_lambda": 10}}), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H11_FR_tr3_retlag2", "Second lag of returns", S(["level", "retlag1", "retlag2", "tr3"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H12_FR_tr3_regimes", "Separate FR models before/after t=284", S(["level", "retlag1", "tr3"], R(1000), split_t=284), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H13_FR_tr3_nbr", "FR neighbour-residual stage on top", S(["level", "retlag1", "tr3"], R(1000), nbr={"lags": 1}), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("H14_FR_fwd_bwd", "Forward and backward parts as separate features", S(["level", "retlag1", "fwd3", "bwd3"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
 ]
 BY_ID = {e["id"]: e for e in EXPERIMENTS}
 assert len(BY_ID) == len(EXPERIMENTS)

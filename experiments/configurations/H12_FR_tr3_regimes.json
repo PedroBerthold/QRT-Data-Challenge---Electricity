@@ -1,0 +1,35 @@
+{
+ "id": "H12_FR_tr3_regimes",
+ "hypothesis": "Separate FR models before/after t=284",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank",
+  "split_t": 284
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

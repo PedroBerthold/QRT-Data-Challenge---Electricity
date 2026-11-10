@@ -80,6 +80,35 @@ for _k in (1, 2, -1, -2, -3):
     BLOCKS[f"lvllag{_k}" if _k > 0 else f"lvllead{-_k}"] = _lvlshift(_k)  # levels of other days
 
 
+def _trend(K, centred=False):
+    """Mean of the K days after t minus mean of the K days before t
+    (centred=True: the forward window starts at t itself)."""
+    def fn(D):
+        P = _phys(D)
+        fwd = sum(P.shift(-k) for k in (range(0, K) if centred else range(1, K + 1))) / K
+        bwd = sum(P.shift(k) for k in range(1, K + 1)) / K
+        return (fwd - bwd).add_prefix(f"TR{'C' if centred else ''}{K}_")
+    return fn
+
+
+for _K in (2, 3, 4, 5, 7, 10):
+    BLOCKS[f"tr{_K}"] = _trend(_K)
+    BLOCKS[f"trc{_K}"] = _trend(_K, True)
+
+
+def _fwd(K):
+    return lambda D: (sum(_phys(D).shift(-k) for k in range(1, K + 1)) / K - _phys(D)).add_prefix(f"FWD{K}_")
+
+
+def _bwd(K):
+    return lambda D: (_phys(D) - sum(_phys(D).shift(k) for k in range(1, K + 1)) / K).add_prefix(f"BWD{K}_")
+
+
+for _K in (3, 5):
+    BLOCKS[f"fwd{_K}"] = _fwd(_K)   # coming days vs today
+    BLOCKS[f"bwd{_K}"] = _bwd(_K)   # today vs previous days
+
+
 @block("ret")
 def ret(D):
     return D[RETURNS].copy()

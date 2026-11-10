@@ -1,0 +1,41 @@
+{
+ "id": "H10_FR_tr3_lgbm",
+ "hypothesis": "Boosting on trend features",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "lgbm",
+   "params": {
+    "n_estimators": 300,
+    "learning_rate": 0.02,
+    "num_leaves": 5,
+    "min_child_samples": 30,
+    "subsample": 0.7,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.4,
+    "reg_lambda": 10
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}
