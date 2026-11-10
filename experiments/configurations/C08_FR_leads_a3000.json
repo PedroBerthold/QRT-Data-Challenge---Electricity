@@ -1,0 +1,32 @@
+{
+ "id": "C08_FR_leads_a3000",
+ "hypothesis": "Even more shrinkage",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 3000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

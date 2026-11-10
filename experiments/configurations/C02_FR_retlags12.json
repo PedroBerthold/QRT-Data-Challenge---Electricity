@@ -1,0 +1,31 @@
+{
+ "id": "C02_FR_retlags12",
+ "hypothesis": "Two lags of returns",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "retlag2"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 300
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

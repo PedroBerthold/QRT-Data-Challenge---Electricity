@@ -71,6 +71,15 @@ for _k in (1, 2, 3, -1, -2):
     BLOCKS[f"retlag{_k}" if _k > 0 else f"retlead{-_k}"] = _retlag(_k)
 
 
+def _lvlshift(k):
+    tag = f"LVLLAG{k}_" if k > 0 else f"LVLLEAD{-k}_"
+    return lambda D: _phys(D).shift(k).add_prefix(tag)
+
+
+for _k in (1, 2, -1, -2, -3):
+    BLOCKS[f"lvllag{_k}" if _k > 0 else f"lvllead{-_k}"] = _lvlshift(_k)  # levels of other days
+
+
 @block("ret")
 def ret(D):
     return D[RETURNS].copy()
