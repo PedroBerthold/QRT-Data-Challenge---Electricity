@@ -1,0 +1,28 @@
+{
+ "id": "A03_ridge_level_rank",
+ "hypothesis": "Rank metric + fat tails: fit ranks of the target",
+ "FR": {
+  "blocks": [
+   "level"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 100
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "level"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 100
+   }
+  },
+  "target": "rank"
+ }
+}

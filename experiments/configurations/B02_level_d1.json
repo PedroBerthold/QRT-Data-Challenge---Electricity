@@ -1,0 +1,30 @@
+{
+ "id": "B02_level_d1",
+ "hypothesis": "Levels + changes",
+ "FR": {
+  "blocks": [
+   "level",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "level",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}
