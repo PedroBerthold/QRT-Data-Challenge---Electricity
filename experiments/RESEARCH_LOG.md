@@ -120,3 +120,10 @@ already in the static baseline.
 - DE: a state-space model of the price level (exact smoothing instead of the one-neighbour ridge) could
   extract slightly more from neighbouring targets.
 - XGBoost and CatBoost not tested (installation failed here).
+
+## Public leaderboard result (2026-11-10)
+
+`K01_ensemble_main` submitted: public score **0.5968**. Validation said 0.60 in 5-fold and 0.59 to 0.60 once
+corrected for the lower share of known neighbours, so validation and test agree. On the leaderboard snapshot
+of the same day this is 5th (4th: 0.5973, 1st: 0.6149). One submission used; no model choice was made on the
+public score.

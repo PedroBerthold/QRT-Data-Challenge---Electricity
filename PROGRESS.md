@@ -17,4 +17,5 @@ L'ancienne tentative (sans axe temporel, plafond 0,31) est archivee sur la branc
 - [x] Soumissions K01 / K02 / K03 dans `outputs/`
 
 ## En cours
-- [ ] Rien en cours. Pistes ouvertes : fin de `experiments/RESEARCH_LOG.md` (surtout FR, a 0,34).
+- [x] K01 soumis : score public 0,5968 (5e au classement du jour), conforme a la validation
+- [ ] Rien en cours. Piste suivante : ameliorer FR (0,34), voir fin de `experiments/RESEARCH_LOG.md`.
