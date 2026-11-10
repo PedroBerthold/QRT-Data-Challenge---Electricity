@@ -1,0 +1,33 @@
+{
+ "id": "C09_FR_leads_retlead",
+ "hypothesis": "Next-day commodity returns as a placebo/lead check",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "retlead1",
+   "lvllead1",
+   "lvllead2"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

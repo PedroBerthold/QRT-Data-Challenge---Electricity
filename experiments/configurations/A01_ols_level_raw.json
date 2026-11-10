@@ -1,0 +1,22 @@
+{
+ "id": "A01_ols_level_raw",
+ "hypothesis": "Benchmark-like: per-country OLS on same-day levels, raw target",
+ "FR": {
+  "blocks": [
+   "level"
+  ],
+  "model": {
+   "type": "ols"
+  },
+  "target": "none"
+ },
+ "DE": {
+  "blocks": [
+   "level"
+  ],
+  "model": {
+   "type": "ols"
+  },
+  "target": "none"
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "id": "B04_level_d1_d2_retlag",
+ "hypothesis": "Two-day changes and two lags of returns",
+ "FR": {
+  "blocks": [
+   "level",
+   "d1",
+   "d2",
+   "retlag1",
+   "retlag2"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "level",
+   "d1",
+   "d2",
+   "retlag1",
+   "retlag2"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

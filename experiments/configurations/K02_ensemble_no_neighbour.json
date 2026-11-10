@@ -1,0 +1,8 @@
+{
+ "id": "K02_ensemble_no_neighbour",
+ "hypothesis": "Conservative alternative: same FR models, DE without the neighbour-target stage",
+ "blend": [
+  "H01_noNbr_ref",
+  "H03_noNbr_ref"
+ ]
+}

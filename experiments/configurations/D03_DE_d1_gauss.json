@@ -1,0 +1,33 @@
+{
+ "id": "D03_DE_d1_gauss",
+ "hypothesis": "Normal-score target instead of uniform ranks",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "gauss"
+ }
+}

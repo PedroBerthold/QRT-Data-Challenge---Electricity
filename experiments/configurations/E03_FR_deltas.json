@@ -1,0 +1,33 @@
+{
+ "id": "E03_FR_deltas",
+ "hypothesis": "FR in changes: yesterday->today, today->tomorrow, tomorrow->day after",
+ "FR": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "d1",
+   "lead1",
+   "lead2"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

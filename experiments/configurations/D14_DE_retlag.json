@@ -1,0 +1,34 @@
+{
+ "id": "D14_DE_retlag",
+ "hypothesis": "Commodity lags for DE",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

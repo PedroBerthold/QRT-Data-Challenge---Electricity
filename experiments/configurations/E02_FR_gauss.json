@@ -1,0 +1,33 @@
+{
+ "id": "E02_FR_gauss",
+ "hypothesis": "Normal-score target for FR",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "gauss"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

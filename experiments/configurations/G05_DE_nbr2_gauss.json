@@ -1,0 +1,36 @@
+{
+ "id": "G05_DE_nbr2_gauss",
+ "hypothesis": "Normal-score target",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "gauss",
+  "nbr": {
+   "lags": 2
+  }
+ }
+}

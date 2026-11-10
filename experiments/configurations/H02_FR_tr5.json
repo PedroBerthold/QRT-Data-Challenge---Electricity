@@ -1,0 +1,34 @@
+{
+ "id": "H02_FR_tr5",
+ "hypothesis": "5-day windows",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "tr5"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

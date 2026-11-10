@@ -1,0 +1,32 @@
+{
+ "id": "B03_level_d1_retlag1",
+ "hypothesis": "Add yesterday's commodity returns (FR target reacts to them)",
+ "FR": {
+  "blocks": [
+   "level",
+   "d1",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "level",
+   "d1",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

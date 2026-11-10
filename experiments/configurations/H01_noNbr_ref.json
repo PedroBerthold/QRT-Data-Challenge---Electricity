@@ -1,0 +1,31 @@
+{
+ "id": "H01_noNbr_ref",
+ "hypothesis": "Reference without neighbour stage: FR trend (no levels), DE change ridge",
+ "FR": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

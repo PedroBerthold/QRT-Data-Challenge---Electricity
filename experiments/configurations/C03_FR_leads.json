@@ -1,0 +1,32 @@
+{
+ "id": "C03_FR_leads",
+ "hypothesis": "Futures price in tomorrow's fundamentals: add levels of t+1 and t+2",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 300
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

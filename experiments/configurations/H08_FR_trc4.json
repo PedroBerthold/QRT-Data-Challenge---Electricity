@@ -1,0 +1,34 @@
+{
+ "id": "H08_FR_trc4",
+ "hypothesis": "Forward window starting today",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "trc4"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

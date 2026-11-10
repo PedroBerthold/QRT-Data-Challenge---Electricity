@@ -1,0 +1,35 @@
+{
+ "id": "J09_FR_retlags_window",
+ "hypothesis": "FR: commodity returns of t-1 and t-2",
+ "FR": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "retlag2",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

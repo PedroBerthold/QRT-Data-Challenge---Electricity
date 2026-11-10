@@ -1,0 +1,34 @@
+{
+ "id": "B06_level_d1_lag1d",
+ "hypothesis": "Yesterday's change (delayed adjustment / reversal)",
+ "FR": {
+  "blocks": [
+   "level",
+   "d1",
+   "lag1d",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "level",
+   "d1",
+   "lag1d",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

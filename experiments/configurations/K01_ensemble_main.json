@@ -1,0 +1,11 @@
+{
+ "id": "K01_ensemble_main",
+ "hypothesis": "Final: average of the best linear variants (FR trend models; DE change models with neighbour stage, ridge + SVR + normal-score). Averaging rather than picking the top run.",
+ "blend": [
+  "H05_FR_tr3_nolevel",
+  "H03_FR_tr3_tr7",
+  "J03_DE_gauss_nbr",
+  "J11_DE_svr_nbr",
+  "J09_FR_retlags_window"
+ ]
+}

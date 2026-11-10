@@ -1,0 +1,34 @@
+{
+ "id": "B07_level_d1_dev7",
+ "hypothesis": "Deviation from the previous week",
+ "FR": {
+  "blocks": [
+   "level",
+   "d1",
+   "dev7",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "level",
+   "d1",
+   "dev7",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "id": "E05_FR_svr",
+ "hypothesis": "RBF SVR for FR",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "svr",
+   "params": {
+    "C": 0.3,
+    "epsilon": 0.1,
+    "gamma": 0.002
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "id": "C01_FR_level_retlag1",
+ "hypothesis": "FR reacts to today's and yesterday's commodity returns",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 300
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

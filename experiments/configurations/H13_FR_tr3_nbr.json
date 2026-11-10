@@ -1,0 +1,37 @@
+{
+ "id": "H13_FR_tr3_nbr",
+ "hypothesis": "FR neighbour-residual stage on top",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

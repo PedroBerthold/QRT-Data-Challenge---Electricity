@@ -1,0 +1,28 @@
+{
+ "id": "A02_ridge_level_raw",
+ "hypothesis": "Shrinkage",
+ "FR": {
+  "blocks": [
+   "level"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 100
+   }
+  },
+  "target": "none"
+ },
+ "DE": {
+  "blocks": [
+   "level"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 100
+   }
+  },
+  "target": "none"
+ }
+}
