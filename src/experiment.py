@@ -48,10 +48,54 @@ def _fit_predict(cfg, Xs, y, c, itr, iva, seed, tt=None):
             b = (c[iva] == k) & reg[iva]
             if b.sum() == 0 or len(a) == 0:  # e.g. early time blocks contain no DE row
                 continue
+            yt = transform_target(y[a], spec.get("target", "rank"))
             m = make_model(spec["model"], seed)
-            m.fit(Xs[k][a], transform_target(y[a], spec.get("target", "rank")))
-            pred[b] = np.ravel(m.predict(Xs[k][iva[b]])) * spec.get("scale", 1.0)
+            m.fit(Xs[k][a], yt)
+            p = np.ravel(m.predict(Xs[k][iva[b]]))
+            if spec.get("nbr"):
+                p = p + _neighbour_correction(spec, Xs[k], yt, tt, a, iva[b], seed)
+            pred[b] = p * spec.get("scale", 1.0)
     return pred
+
+
+def _neighbour_correction(spec, X, yt, tt, a, b, seed):
+    """Second stage using the known targets of neighbouring days (same country).
+
+    If the price level has a transient component, the residuals of consecutive
+    days are negatively correlated, so the residuals of the training days just
+    before/after a day carry information about it. Only targets of training rows
+    of the current fold are used; at test time these are the real train targets.
+    Residuals of training rows come from an inner K-fold, so they are out-of-sample.
+    """
+    nb = spec["nbr"]
+    L, inner = nb.get("lags", 1), nb.get("inner", 5)
+    p_tr = np.zeros(len(a))
+    days = np.unique(tt[a])
+    perm = np.random.RandomState(seed + 7).permutation(days)
+    for chunk in np.array_split(perm, inner):
+        va = np.isin(tt[a], chunk)
+        mm = make_model(spec["model"], seed).fit(X[a[~va]], yt[~va])
+        p_tr[va] = np.ravel(mm.predict(X[a[va]]))
+    r_tr = yt - p_tr
+    res = dict(zip(tt[a], r_tr))
+
+    def feats(ts):
+        Z = np.zeros((len(ts), 4 * L))
+        for i, t0 in enumerate(ts):
+            for side, sgn in ((0, -1), (1, 1)):
+                acc = 0.0
+                for k in range(1, L + 1):   # contiguous run of known neighbours on this side
+                    v = res.get(t0 + sgn * k)
+                    if v is None:
+                        break
+                    acc += v
+                    Z[i, 4 * (k - 1) + side] = v          # residual of the k-th neighbour
+                    Z[i, 4 * (k - 1) + 2 + side] = 1.0    # availability flag
+        return Z
+
+    from sklearn.linear_model import Ridge
+    st2 = Ridge(alpha=nb.get("alpha", 10.0)).fit(feats(tt[a]), r_tr)
+    return st2.predict(feats(tt[b]))
 
 
 def _z(a):

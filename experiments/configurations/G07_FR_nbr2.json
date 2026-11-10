@@ -1,0 +1,39 @@
+{
+ "id": "G07_FR_nbr2",
+ "hypothesis": "Same idea for FR (residual autocorrelation is weak there: -0.01 to -0.10)",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 2
+  }
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 2
+  }
+ }
+}

@@ -64,6 +64,14 @@ EXPERIMENTS = [
     E("E10_FR_scale05", "Pooled ranking: shrink FR predictions vs DE", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000), scale=0.5), S(["ret", "d1"], R(30))),
     E("E11_FR_scale2", "Pooled ranking: amplify FR predictions vs DE", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000), scale=2.0), S(["ret", "d1"], R(30))),
     E("E12_FR_scale4", "Amplify more", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000), scale=4.0), S(["ret", "d1"], R(30))),
+    # ---- G. Known targets of neighbouring days (second stage on residuals) ----
+    E("G01_DE_nbr1_rank", "DE residuals of adjacent days are negatively correlated (-0.36): use known neighbour targets, 1 day each side", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("G02_DE_nbr2_rank", "Two days each side", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 2})),
+    E("G03_DE_nbr3_rank", "Three days each side", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 3})),
+    E("G04_DE_nbr2_signlog", "Residuals are additive in price space: sign*log target", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), "signlog", nbr={"lags": 2})),
+    E("G05_DE_nbr2_gauss", "Normal-score target", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), "gauss", nbr={"lags": 2})),
+    E("G06_DE_nbr5_rank", "Five days each side", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 5})),
+    E("G07_FR_nbr2", "Same idea for FR (residual autocorrelation is weak there: -0.01 to -0.10)", S(["level", "retlag1", "lvllead1", "lvllead2", "lvllag1"], R(1000), nbr={"lags": 2}), S(["ret", "d1"], R(30), nbr={"lags": 2})),
 ]
 BY_ID = {e["id"]: e for e in EXPERIMENTS}
 assert len(BY_ID) == len(EXPERIMENTS)
