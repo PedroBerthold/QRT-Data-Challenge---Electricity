@@ -1,0 +1,35 @@
+{
+ "id": "J07_FR_scale14",
+ "hypothesis": "FR predictions amplified x1.4",
+ "FR": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank",
+  "scale": 1.4
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

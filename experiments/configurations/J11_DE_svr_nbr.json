@@ -1,0 +1,36 @@
+{
+ "id": "J11_DE_svr_nbr",
+ "hypothesis": "DE SVR + neighbour stage",
+ "FR": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "svr",
+   "params": {
+    "C": 1.0,
+    "epsilon": 0.05,
+    "gamma": 0.005
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1
+  }
+ }
+}

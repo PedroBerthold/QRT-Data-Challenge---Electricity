@@ -1,0 +1,8 @@
+{
+ "id": "K03_ensemble_top2",
+ "hypothesis": "Aggressive alternative: the two best single runs",
+ "blend": [
+  "J11_DE_svr_nbr",
+  "J03_DE_gauss_nbr"
+ ]
+}

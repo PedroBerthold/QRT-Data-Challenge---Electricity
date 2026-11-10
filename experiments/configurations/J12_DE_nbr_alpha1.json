@@ -1,0 +1,35 @@
+{
+ "id": "J12_DE_nbr_alpha1",
+ "hypothesis": "Neighbour stage with less shrinkage",
+ "FR": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank",
+  "nbr": {
+   "lags": 1,
+   "alpha": 1.0
+  }
+ }
+}

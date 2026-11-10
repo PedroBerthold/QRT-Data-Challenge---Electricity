@@ -12,6 +12,9 @@ L'ancienne tentative (sans axe temporel, plafond 0,31) est archivee sur la branc
 - [x] D-E : raffinements DE et FR ; G : 2e etage sur residus des jours voisins (DE 0,78 -> 0,81)
 - [x] H : FR sur tendance multi-jours (FR 0,28 -> 0,34), global ~0,595
 
+- [x] J : verifications croisees ; K : ensembles finaux. `K01_ensemble_main` = 0,60 (FR 0,35 / DE 0,82)
+- [x] Audit (`python -m src.audit`), robustesse (`python -m src.robustness`), RESEARCH_LOG, README
+- [x] Soumissions K01 / K02 / K03 dans `outputs/`
+
 ## En cours
-- [ ] J : tendances pour DE, multi-fenetres FR, echelle FR/DE, ensemble final
-- [ ] Audit complet (`src/audit.py`), RESEARCH_LOG, README, soumission, verification sur clone propre
+- [ ] Rien en cours. Pistes ouvertes : fin de `experiments/RESEARCH_LOG.md` (surtout FR, a 0,34).

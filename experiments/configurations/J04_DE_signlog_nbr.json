@@ -1,0 +1,35 @@
+{
+ "id": "J04_DE_signlog_nbr",
+ "hypothesis": "DE sign*log target, rescaled to keep FR/DE balance",
+ "FR": {
+  "blocks": [
+   "ret",
+   "retlag1",
+   "tr3"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "signlog",
+  "nbr": {
+   "lags": 1
+  },
+  "scale": 0.5
+ }
+}

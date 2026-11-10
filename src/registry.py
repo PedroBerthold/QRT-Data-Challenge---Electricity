@@ -87,6 +87,27 @@ EXPERIMENTS = [
     E("H12_FR_tr3_regimes", "Separate FR models before/after t=284", S(["level", "retlag1", "tr3"], R(1000), split_t=284), S(["ret", "d1"], R(30), nbr={"lags": 1})),
     E("H13_FR_tr3_nbr", "FR neighbour-residual stage on top", S(["level", "retlag1", "tr3"], R(1000), nbr={"lags": 1}), S(["ret", "d1"], R(30), nbr={"lags": 1})),
     E("H14_FR_fwd_bwd", "Forward and backward parts as separate features", S(["level", "retlag1", "fwd3", "bwd3"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    # ---- J. Cross-checks and calibration ----
+    E("J01_DE_tr3", "Does the multi-day trend also matter for DE?", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1", "tr3"], R(30), nbr={"lags": 1})),
+    E("J02_DE_fwd3", "DE: coming days vs today", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1", "fwd3"], R(30), nbr={"lags": 1})),
+    E("J03_DE_gauss_nbr", "DE normal-score target with neighbour stage (best DE in block G) and FR trend", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1"], R(30), "gauss", nbr={"lags": 1}, scale=0.3)),
+    E("J04_DE_signlog_nbr", "DE sign*log target, rescaled to keep FR/DE balance", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1"], R(30), "signlog", nbr={"lags": 1}, scale=0.5)),
+    E("J05_FR_multi", "FR: several trend horizons under strong shrinkage", S(["ret", "retlag1", "tr2", "tr3", "tr5", "tr7"], R(3000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("J06_FR_scale07", "FR predictions shrunk x0.7 in the pooled ranking", S(["ret", "retlag1", "tr3"], R(1000), scale=0.7), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("J07_FR_scale14", "FR predictions amplified x1.4", S(["ret", "retlag1", "tr3"], R(1000), scale=1.4), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("J08_FR_tr3_tr7_nolevel", "FR two horizons, no levels", S(["ret", "retlag1", "tr3", "tr7"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("J09_FR_retlags_window", "FR: commodity returns of t-1 and t-2", S(["ret", "retlag1", "retlag2", "tr3"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1})),
+    E("J10_DE_d1_level_nbr", "DE with levels back in + neighbour stage", S(["ret", "retlag1", "tr3"], R(1000)), S(["level", "d1"], R(30), nbr={"lags": 1})),
+    E("J11_DE_svr_nbr", "DE SVR + neighbour stage", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1"], {"type": "svr", "params": {"C": 1.0, "epsilon": 0.05, "gamma": 0.005}}, nbr={"lags": 1})),
+    E("J12_DE_nbr_alpha1", "Neighbour stage with less shrinkage", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1"], R(30), nbr={"lags": 1, "alpha": 1.0})),
+    E("H01_noNbr_ref", "Reference without neighbour stage: FR trend (no levels), DE change ridge", S(["ret", "retlag1", "tr3"], R(1000)), S(["ret", "d1"], R(30))),
+    E("H03_noNbr_ref", "Reference without neighbour stage: FR level+tr3+tr7, DE change SVR", S(["level", "retlag1", "tr3", "tr7"], R(1000)), S(["ret", "d1"], {"type": "svr", "params": {"C": 1.0, "epsilon": 0.05, "gamma": 0.005}})),
+    # ---- K. Final ensembles (pooled z-score average of stored predictions) ----
+    E("K01_ensemble_main", "Final: average of the best linear variants (FR trend models; DE change models with neighbour stage, ridge + SVR + normal-score). Averaging rather than picking the top run.",
+      blend=["H05_FR_tr3_nolevel", "H03_FR_tr3_tr7", "J03_DE_gauss_nbr", "J11_DE_svr_nbr", "J09_FR_retlags_window"]),
+    E("K02_ensemble_no_neighbour", "Conservative alternative: same FR models, DE without the neighbour-target stage",
+      blend=["H01_noNbr_ref", "H03_noNbr_ref"]),
+    E("K03_ensemble_top2", "Aggressive alternative: the two best single runs", blend=["J11_DE_svr_nbr", "J03_DE_gauss_nbr"]),
 ]
 BY_ID = {e["id"]: e for e in EXPERIMENTS}
 assert len(BY_ID) == len(EXPERIMENTS)
