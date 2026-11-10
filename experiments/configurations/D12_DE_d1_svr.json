@@ -1,0 +1,35 @@
+{
+ "id": "D12_DE_d1_svr",
+ "hypothesis": "RBF SVR on changes",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 1000
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "svr",
+   "params": {
+    "C": 1.0,
+    "epsilon": 0.05,
+    "gamma": 0.005
+   }
+  },
+  "target": "rank"
+ }
+}

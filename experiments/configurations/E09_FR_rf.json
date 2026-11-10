@@ -1,0 +1,35 @@
+{
+ "id": "E09_FR_rf",
+ "hypothesis": "Random forest for FR",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1",
+   "lvllead1",
+   "lvllead2",
+   "lvllag1"
+  ],
+  "model": {
+   "type": "rf",
+   "params": {
+    "n_estimators": 300,
+    "min_samples_leaf": 10,
+    "max_features": 0.3
+   }
+  },
+  "target": "rank"
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

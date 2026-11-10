@@ -1,0 +1,31 @@
+{
+ "id": "E07_FR_regimes_small",
+ "hypothesis": "Same with a small feature set",
+ "FR": {
+  "blocks": [
+   "level",
+   "retlag1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 300
+   }
+  },
+  "target": "rank",
+  "split_t": 284
+ },
+ "DE": {
+  "blocks": [
+   "ret",
+   "d1"
+  ],
+  "model": {
+   "type": "ridge",
+   "params": {
+    "alpha": 30
+   }
+  },
+  "target": "rank"
+ }
+}

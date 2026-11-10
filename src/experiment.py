@@ -34,17 +34,23 @@ def _country_matrix(spec, days, t):
     return F.loc[t].values
 
 
-def _fit_predict(cfg, Xs, y, c, itr, iva, seed):
-    """Per-country fit. Xs: dict country -> matrix for all rows passed."""
+def _fit_predict(cfg, Xs, y, c, itr, iva, seed, tt=None):
+    """Per-country fit. Xs: dict country -> matrix for all rows passed.
+    Optional spec["split_t"]: separate models before/after that time (regimes)."""
     pred = np.zeros(len(iva))
     for k in ("FR", "DE"):
         spec = cfg[k]
-        a, b = itr[c[itr] == k], c[iva] == k
-        if b.sum() == 0:  # e.g. early time blocks contain no DE row
-            continue
-        m = make_model(spec["model"], seed)
-        m.fit(Xs[k][a], transform_target(y[a], spec.get("target", "rank")))
-        pred[b] = np.ravel(m.predict(Xs[k][iva[b]])) * spec.get("scale", 1.0)
+        regimes = [np.ones(len(c), bool)]
+        if spec.get("split_t") is not None:
+            regimes = [tt < spec["split_t"], tt >= spec["split_t"]]
+        for reg in regimes:
+            a = itr[(c[itr] == k) & reg[itr]]
+            b = (c[iva] == k) & reg[iva]
+            if b.sum() == 0 or len(a) == 0:  # e.g. early time blocks contain no DE row
+                continue
+            m = make_model(spec["model"], seed)
+            m.fit(Xs[k][a], transform_target(y[a], spec.get("target", "rank")))
+            pred[b] = np.ravel(m.predict(Xs[k][iva[b]])) * spec.get("scale", 1.0)
     return pred
 
 
@@ -69,14 +75,14 @@ def run(cfg, verbose=True):
         Xt = {k: _country_matrix(cfg[k], days, te.t.values) for k in ("FR", "DE")}
         oof = np.zeros((n, N_REPEATS))
         for r, f, itr, iva in random_day_folds(t):
-            oof[iva, r] = _fit_predict(cfg, Xs, y, c, itr, iva, 100 * r + f)
+            oof[iva, r] = _fit_predict(cfg, Xs, y, c, itr, iva, 100 * r + f, t)
         blk = np.zeros(n)
         for r, f, itr, iva in time_block_folds(t):
-            blk[iva] = _fit_predict(cfg, Xs, y, c, itr, iva, f)
+            blk[iva] = _fit_predict(cfg, Xs, y, c, itr, iva, f, t)
         # final fit on all training rows -> test
         allX = {k: np.vstack([Xs[k], Xt[k]]) for k in ("FR", "DE")}
         call = np.concatenate([c, te.COUNTRY.values])
-        test = _fit_predict(cfg, allX, np.concatenate([y, np.zeros(len(te))]), call, np.arange(n), np.arange(n, n + len(te)), 0)
+        test = _fit_predict(cfg, allX, np.concatenate([y, np.zeros(len(te))]), call, np.arange(n), np.arange(n, n + len(te)), 0, np.concatenate([t, te.t.values]))
 
     folds = pd.DataFrame([{"scheme": "random", "repeat": r, "fold": f, "n": len(iva), "spearman": sp(y[iva], oof[iva, r])}
                           for r, f, itr, iva in random_day_folds(t)] +
