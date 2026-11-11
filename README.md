@@ -53,7 +53,7 @@ There are 1,494 labelled rows to learn from and 654 rows to predict, spread over
 **The metric.** Submissions are scored with the Spearman correlation. It ignores the exact values and only asks: did you put the rows in the right order? Formally, replace predictions $\hat y_i$ and true values $y_i$ by their ranks $R(\hat y_i)$ and $R(y_i)$, then compute the ordinary correlation of those ranks:
 
 ```math
-\rho_s \;=\; \frac{\operatorname{cov}\big(R(\hat y),\,R(y)\big)}{\sigma_{R(\hat y)}\;\sigma_{R(y)}}
+\rho_s \;=\; \frac{\mathrm{cov}\big(R(\hat y),\,R(y)\big)}{\sigma_{R(\hat y)}\;\sigma_{R(y)}}
 ```
 
 When there are no ties this is the same as $\rho_s = 1 - \dfrac{6\sum_i d_i^2}{n(n^2-1)}$, where $d_i$ is the difference between the two ranks of row $i$.
@@ -281,7 +281,7 @@ A first attempt made before the time axis was found is archived on the branch `c
 - **France is the weak leg**: 0.35 on 57% of the rows. This is where the remaining upside is.
 - **The last 0.01 is within selection noise.** About 80 configurations were compared on the same folds. The large effects (changes, trends) are far beyond that noise; the choice among close variants is not.
 - **The neighbour step uses training targets of adjacent days.** It is within the data provided, but a strict reading of "explain with simultaneous variables" could object to it. `K02` is the submission without it (0.588 in validation).
-- **Not tested**: XGBoost and CatBoost (could not be installed in the working environment).
+- **Not tested**: XGBoost and CatBoost.
 - **Ideas for later**: a low-dimensional lead and lag kernel shared across variables for France; a state-space model of the German price level instead of the one-neighbour correction.
 
 ## Glossary
