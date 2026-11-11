@@ -1,3 +1,5 @@
+![QRT electricity data challenge banner](docs/figures/00_banner.png)
+
 # Can you explain the price of electricity? ⚡
 
 **QRT Data Challenge (Challenge Data, ENS / Collège de France). Public score 0.597, 5th on the leaderboard, with a single submission.**
